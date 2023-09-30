@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Face</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: rgb(235, 137, 232);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .face {
+            width: 300px;
+            height: 300px;
+            background: #ffd699;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .eye {
+            width: 80px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        .pupil {
+            width: 40px;
+            height: 40px;
+            background: rgb(4, 2, 9);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .mouth {
+            width: 100px;
+            height: 20px;
+            background: #ff6666;
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 80px 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="face">
+        <div class="eye">
+            <div class="pupil"></div>
+        </div>
+        <div class="eye" style="left: 60%;">
+            <div class="pupil"></div>
+        </div>
+        <div class="mouth"></div>
+    </div>
+    <script>
+        var pupils = document.getElementsByClassName("pupil");
+        document.onmousemove = function (event) {
+            var x = event.clientX * 100 / window.innerWidth + "%";
+            var y = event.clientY * 100 / window.innerHeight + "%";
+
+            for (var i = 0; i < pupils.length; i++) {
+                pupils[i].style.left = x;
+                pupils[i].style.top = y;
+                pupils[i].style.transform = "translate(-" + x + ",-" + y + ")";
+            }
+        }
+    </script>
+</body>
+</html>
